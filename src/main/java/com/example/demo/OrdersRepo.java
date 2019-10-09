@@ -12,19 +12,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrdersRepo extends JpaRepository<OrderDetails, Integer> {
 
-	@Query("select distinct couponCode,couponType from OrderDetails")
-	public List<Object[]> distinctOrders();
+	@Query("select distinct NEW com.example.demo.DistinctOrderDetails(couponCode,couponType) from OrderDetails")
+	public List<DistinctOrderDetails> distinctOrders();
 	
-	/** You can uses @NamedQuery or
-	 * @Query("SELECT sum(qty) FROM OrderDetails p where couponCode=:couponCode and couponType=:couponType")")
-	 * @param couponCode
-	 * @param couponType
-	 * @return
-	 * FIX-ME get entity instead of Object[]
-	 */
+	@Query("SELECT sum(qty) FROM OrderDetails p where couponCode=:couponCode and couponType=:couponType")
 	public Long getSumByName(@Param("couponCode") String couponCode,@Param("couponType") String couponType);
 
 
-	@Query("SELECT couponCode,couponType,sum(qty) FROM OrderDetails p group by couponCode,couponType")
-	public List<Object[]> getDistinctOrdersByGroup();
+	
+	@Query("SELECT NEW com.example.demo.DistinctOrderDetails(couponCode,couponType,sum(qty)) FROM OrderDetails p group by couponCode,couponType")
+	public List<DistinctOrderDetails> getDistinctOrdersByGroup();
+	
 }

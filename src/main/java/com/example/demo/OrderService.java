@@ -19,25 +19,15 @@ public class OrderService {
 	}
 
 	public List<DistinctOrderDetails> getDistinctOrders() {
-		// TODO Auto-generated method stub
-		List<Object[]> distinctList= ordersRepo.distinctOrders();
-		List<DistinctOrderDetails> List = new ArrayList<DistinctOrderDetails>();
-		for(Object[] d : distinctList) {
-			List.add(new DistinctOrderDetails(d[0].toString(),d[1].toString(),ordersRepo.getSumByName(d[0].toString(), d[1].toString())));
+		List<DistinctOrderDetails> List = ordersRepo.distinctOrders();
+		for(DistinctOrderDetails d : List) {
+			d.setQty(ordersRepo.getSumByName(d.getCouponCode(), d.getCouponType()));
 		}
-		
 		return List;
 	}
-
 
 	public List<DistinctOrderDetails> getDistinctOrdersByGroup() {
-		List<Object[]> distinctList= ordersRepo.getDistinctOrdersByGroup();
-		List<DistinctOrderDetails> List = new ArrayList<DistinctOrderDetails>();
-		for(Object[] d : distinctList) {
-			List.add(new DistinctOrderDetails(d[0].toString(),d[1].toString(),(Long) d[2]));
-		}
-		return List;
+		return ordersRepo.getDistinctOrdersByGroup();
 	}
-
 
 }

@@ -10,6 +10,10 @@ public class DistinctOrderDetails {
 		this.couponType = couponType;
 		this.qty = (qty!=null?qty:0);
 	}
+	public DistinctOrderDetails(String couponCode, String couponType) {
+		this.couponCode = couponCode;
+		this.couponType = couponType;
+	}
 	public String getCouponCode() {
 		return couponCode;
 	}

@@ -5,7 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 @Entity
-@NamedQuery(name = "OrderDetails.getSumByName", query = "SELECT sum(qty) FROM OrderDetails p where couponCode=:couponCode and couponType=:couponType")
+//@NamedQuery(name = "OrderDetails.getSumByName", query = "SELECT sum(qty) FROM OrderDetails p where couponCode=:couponCode and couponType=:couponType")
 public class OrderDetails {
 	@Id
 	private int oId;

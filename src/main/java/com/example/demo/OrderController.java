@@ -28,7 +28,5 @@ public class OrderController {
 	public List<DistinctOrderDetails> getDistinctOrdersByGroup(){
 		return orderService.getDistinctOrdersByGroup();
 	}
-	
-	
 
 }
