@@ -15,7 +15,7 @@ public interface OrdersRepo extends JpaRepository<OrderDetails, Integer> {
 	@Query("select distinct NEW com.example.demo.DistinctOrderDetails(couponCode,couponType) from OrderDetails")
 	public List<DistinctOrderDetails> distinctOrders();
 	
-	@Query("SELECT sum(qty) FROM OrderDetails p where couponCode=:couponCode and couponType=:couponType")
+	@Query("SELECT NVL(sum(qty),0) FROM OrderDetails p where couponCode=:couponCode and couponType=:couponType")
 	public Long getSumByName(@Param("couponCode") String couponCode,@Param("couponType") String couponType);
 
 

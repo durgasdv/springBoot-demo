@@ -29,5 +29,13 @@ public class OrderService {
 	public List<DistinctOrderDetails> getDistinctOrdersByGroup() {
 		return ordersRepo.getDistinctOrdersByGroup();
 	}
+	
+	public Long getSumOfOrderQty(OrderDetails orderDetails) {
+		return ordersRepo.getSumByName(orderDetails.getCouponCode(), orderDetails.getCouponType());
+	}
+	
+	public Long getSumOfOrderQty(String couponCode,String couponType ) {
+		return ordersRepo.getSumByName(couponCode, couponType);
+	}
 
 }
